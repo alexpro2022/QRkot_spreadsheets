@@ -1,11 +1,8 @@
 from datetime import datetime as dt
-from http import HTTPStatus
-from typing import AsyncGenerator, Dict, List, Optional
+from typing import AsyncGenerator, List, Optional
 
 from aiogoogle import Aiogoogle, GoogleAPI
 from aiogoogle.auth.creds import ServiceAccountCreds
-from aiogoogle.excs import HTTPError
-from fastapi import HTTPException
 
 from app import models
 from app.core import settings
@@ -148,45 +145,9 @@ async def upload(
     projects: List[models.CharityProject],
     wrapper_services: Aiogoogle,
 ) -> str:
-    spreadsheet_id = await spreadsheets_create(wrapper_services)
-    await set_user_permissions(spreadsheet_id, wrapper_services)
+    spreadsheetid = await spreadsheets_create(wrapper_services)
+    await set_user_permissions(spreadsheetid, wrapper_services)
     await spreadsheets_update_value(
-        spreadsheet_id, projects, wrapper_services,
+        spreadsheetid, projects, wrapper_services,
     )
-    return (
-        f'Создан новый документ: '
-        f'https://docs.google.com/spreadsheets/d/{spreadsheet_id}')
-
-
-async def get_all_spreadsheets(
-    wrapper_services: Aiogoogle,
-) -> List[Dict[str, str]]:
-    service = await __get_api_service(wrapper_services, drive=True)
-    response = await wrapper_services.as_service_account(
-        service.files.list(
-            q='mimeType="application/vnd.google-apps.spreadsheet"'))
-    return response['files']
-
-
-async def delete_spreadsheet(
-    spreadsheet_id: str,
-    wrapper_services: Aiogoogle,
-) -> str:
-    service = await __get_api_service(wrapper_services, drive=True)
-    try:
-        await wrapper_services.as_service_account(
-            service.files.delete(fileId=spreadsheet_id))
-    except HTTPError:
-        raise HTTPException(
-            HTTPStatus.NOT_FOUND,
-            f'Документ с id = {spreadsheet_id} не найден.')
-    return f'Документ с id = {spreadsheet_id} удален.'
-
-
-async def clear_disk(wrapper_services: Aiogoogle) -> str:
-    spreadsheets = await get_all_spreadsheets(wrapper_services)
-    if spreadsheets:
-        for spreadsheet in spreadsheets:
-            await delete_spreadsheet(spreadsheet['id'], wrapper_services)
-        return 'Документы удалены, диск пуст.'
-    return 'На диске нет документов для удаления.'
+    return f'https://docs.google.com/spreadsheets/d/{spreadsheetid}'
