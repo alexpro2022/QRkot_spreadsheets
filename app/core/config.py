@@ -30,6 +30,9 @@ class Settings(BaseSettings):
     auth_provider_x509_cert_url: Optional[str] = None
     client_x509_cert_url: Optional[str] = None
     email: Optional[str] = None
+    SUPER_ONLY = '__Только для суперюзеров:__ '
+    AUTH_ONLY = '__Только для авторизованных пользователей:__ '
+    ALL_USERS = '__Для всех пользователей:__ '
 
     class Config:
         env_file = '.env'
