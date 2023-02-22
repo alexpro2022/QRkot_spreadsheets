@@ -25,7 +25,7 @@ INFO = {
 CREDENTIALS = ServiceAccountCreds(scopes=SCOPES, **INFO)
 
 
-async def get_google_service() -> AsyncGenerator[Aiogoogle, None]:
+async def get_service() -> AsyncGenerator[Aiogoogle, None]:
     async with Aiogoogle(
         service_account_creds=CREDENTIALS
     ) as aiogoogle:
