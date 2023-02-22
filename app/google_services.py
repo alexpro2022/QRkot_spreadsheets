@@ -144,9 +144,10 @@ async def set_user_permissions(
 async def upload(
     projects: List[models.CharityProject],
     wrapper_services: Aiogoogle,
-) -> None:
+) -> str:
     spreadsheetid = await spreadsheets_create(wrapper_services)
     await set_user_permissions(spreadsheetid, wrapper_services)
     await spreadsheets_update_value(
         spreadsheetid, projects, wrapper_services,
     )
+    return f'https://docs.google.com/spreadsheets/d/{spreadsheetid}'
