@@ -52,6 +52,9 @@ class GoogleSettings:
         'emailAddress': settings.email,
     }
     PERMISSIONS_FIELDS = 'id'
+    DIMENSIONS = 'ROWS'
+    RANGE = 'A1:E30'
+    INPUT_OPTION = 'USER_ENTERED'
 
 
 async def get_google_service() -> AsyncGenerator[Aiogoogle, None]:
@@ -101,7 +104,7 @@ def __create_table(
 async def spreadsheets_create(wrapper_services: Aiogoogle) -> str:
     spreadsheet_body = {
         'properties': {
-            'title': f'Отчет от {__get_datetime()}',
+            'title': f'Отчет от: {__get_datetime()}',
             'locale': GoogleSettings.LOCALE,
         },
         'sheets': GoogleSettings.SHEETS_PROPERTIES,
@@ -118,15 +121,15 @@ async def spreadsheets_update_value(
     wrapper_services: Aiogoogle
 ) -> None:
     update_body = {
-        'majorDimension': 'ROWS',
+        'majorDimension': GoogleSettings.DIMENSIONS,
         'values': __create_table(projects),
     }
     service = await __get_api_service(wrapper_services)
     await wrapper_services.as_service_account(
         service.spreadsheets.values.update(
             spreadsheetId=spreadsheet_id,
-            range='A1:E30',
-            valueInputOption='USER_ENTERED',
+            range=GoogleSettings.RANGE,
+            valueInputOption=GoogleSettings.INPUT_OPTION,
             json=update_body,
         ))
 
@@ -151,8 +154,7 @@ async def upload(
     spreadsheet_id = await spreadsheets_create(wrapper_services)
     await set_user_permissions(spreadsheet_id, wrapper_services)
     await spreadsheets_update_value(
-        spreadsheet_id, projects, wrapper_services,
-    )
+        spreadsheet_id, projects, wrapper_services)
     return (
         f'Создан новый документ: '
         f'https://docs.google.com/spreadsheets/d/{spreadsheet_id}')
