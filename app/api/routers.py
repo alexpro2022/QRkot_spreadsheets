@@ -1,17 +1,17 @@
 from fastapi import APIRouter
 
 from app.api.endpoints import (
-    google,
     charity_project,
     donation,
     user,
 )
+from app.google_package.api import router as google_router
 
 main_router = APIRouter()
 
 
 for router in (
-    google.router,
+    google_router,
     charity_project.router,
     donation.router,
     user.router,

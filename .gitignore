@@ -134,3 +134,5 @@ dmypy.json
 
 fastapi.db
 test.db
+
+=GARB=/
