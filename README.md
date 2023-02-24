@@ -48,7 +48,7 @@
 ## Установка:
 1. Клонировать репозиторий с GitHub:
 ```
-git@github.com:alexpro2022/QRkot_spreadsheets.git
+git clone git@github.com:alexpro2022/QRkot_spreadsheets.git
 ```
 
 2. Перейти в созданную директорию проекта:
