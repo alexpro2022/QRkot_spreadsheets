@@ -10,7 +10,7 @@ To customize the class please inherit it and override the two methods:
     ):
 ----------------------------------
 
-and at least following constanses:
+and at least following constants:
     UPLOAD_SUMMARY: str = 'must be implemented'
     UPLOAD_DESCRIPTION: str = 'must be implemented'
     GETALL_SUMMARY: str = 'must be implemented'
@@ -19,7 +19,6 @@ and at least following constanses:
     DELETE_DESCRIPTION: str = 'must be implemented'
     CLEARDISK_SUMMARY: str = 'must be implemented'
     CLEARDISK_DESCRIPTION: str = 'must be implemented'
-
 """
 from typing import Dict
 
