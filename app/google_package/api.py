@@ -10,13 +10,7 @@ from app.core import (
     settings,
 )
 from app.crud import charity_crud
-from .services import (
-    clear_disk,
-    get_google_service,
-    get_all_spreadsheets,
-    delete_spreadsheet,
-    upload,
-)
+from .services import google_client
 
 
 router = APIRouter(prefix='/google', tags=['Google'])
@@ -33,11 +27,12 @@ router = APIRouter(prefix='/google', tags=['Google'])
         'что долго собирали нужную сумму.'
     ))
 async def get_report(
-        session: AsyncSession = Depends(get_async_session),
-        wrapper_services: Aiogoogle = Depends(get_google_service),
+    session: AsyncSession = Depends(get_async_session),
+    wrapper_services: Aiogoogle = Depends(google_client.get_google_service),
 ) -> str:
-    projects = await charity_crud.get_projects_by_completion_rate(session)
-    return await upload(projects, wrapper_services)
+    google_client.UPDATE_DATA = (
+        await charity_crud.get_projects_by_completion_rate(session))
+    return await google_client.upload(wrapper_services)
 
 
 @router.get(
@@ -50,9 +45,9 @@ async def get_report(
         'либо пустой список.'
     ))
 async def get_all_spreadsheets_api(
-    wrapper_services: Aiogoogle = Depends(get_google_service)
+    wrapper_services: Aiogoogle = Depends(google_client.get_google_service)
 ) -> List[Dict[str, str]]:
-    return await get_all_spreadsheets(wrapper_services)
+    return await google_client.get_all_spreadsheets(wrapper_services)
 
 
 @router.delete(
@@ -64,9 +59,9 @@ async def get_all_spreadsheets_api(
         '**__ВНИМАНИЕ: с диска будут удалены все таблицы!__**'
     ))
 async def clear_disk_api(
-    wrapper_services: Aiogoogle = Depends(get_google_service)
+    wrapper_services: Aiogoogle = Depends(google_client.get_google_service)
 ) -> str:
-    return await clear_disk(wrapper_services)
+    return await google_client.clear_disk(wrapper_services)
 
 
 @router.delete(
@@ -79,6 +74,7 @@ async def clear_disk_api(
     ))
 async def delete_spreadsheet_api(
     spreadsheet_id: str,
-    wrapper_services: Aiogoogle = Depends(get_google_service)
+    wrapper_services: Aiogoogle = Depends(google_client.get_google_service)
 ) -> str:
-    return await delete_spreadsheet(spreadsheet_id, wrapper_services)
+    return await google_client.delete_spreadsheet(
+        wrapper_services, spreadsheet_id)
