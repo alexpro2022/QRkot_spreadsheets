@@ -5,7 +5,7 @@ from app.api.endpoints import (
     donation,
     user,
 )
-from app.google_package.api import router as google_router
+from app.google_package import router as google_router
 
 main_router = APIRouter()
 
