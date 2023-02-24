@@ -129,4 +129,4 @@ pip list
 ## Автор
 [Aleksei Proskuriakov](https://github.com/alexpro2022)
 
-[⬆️В начало](#Проект-QRkot-spreadseets)
+[⬆️В начало](#Проект-QRkot_spreadsheets)
