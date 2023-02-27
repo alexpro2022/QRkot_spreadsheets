@@ -1,9 +1,16 @@
+# Введите свои данные в переменные окружения:
+
 DATABASE_URL=sqlite+aiosqlite:///./fastapi.db
 SECRET=qwerty
 FIRST_SUPERUSER_EMAIL=first@ya.ru
 FIRST_SUPERUSER_PASSWORD=password
 
-# Переменные для Google API
+# Почтовый адрес вашего личного аккаунта Google:
+EMAIL=
+
+# Укажите данные для работы ваших Python-приложений с подключёнными Google API
+# Эти данные передаются платформой (Google Cloud Platform) в json-файле 
+# при создании ключа доступа к вашему сервисному аккаунту
 TYPE=
 PROJECT_ID=
 PRIVATE_KEY_ID=
@@ -14,4 +21,3 @@ AUTH_URI=
 TOKEN_URI=
 AUTH_PROVIDER_X509_CERT_URL=
 CLIENT_X509_CERT_URL=
-EMAIL=
