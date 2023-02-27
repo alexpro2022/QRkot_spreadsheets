@@ -63,15 +63,12 @@ python -m venv venv
 ```
    * Если у вас Linux/macOS
 
-    ```
     source venv/bin/activate
-    ```
 
    * Если у вас windows
 
-    ```
     source venv/Scripts/activate
-    ```
+
 
 4. Установите в виртуальное окружение все необходимые зависимости из файла **requirements.txt**:
 ```
