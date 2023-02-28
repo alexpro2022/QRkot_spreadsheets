@@ -13,14 +13,15 @@
 
 
 ## Технологии
-  - API - FastAPI, FastAPU Users, Pydantic, Uvicorn
-  - Работа с реляционными БД - Alembic, SQLAlchemy
-  - Dependency Injection
-  - Google Drive, Google Sheets
-[![Python](https://img.shields.io/badge/-Python-464646?logo=Python)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/-FastAPI-464646?logo=FastAPI)](https://fastapi.tiangolo.com/)
-[![FastAPI Users](https://img.shields.io/badge/-FastAPIUSERS-464646?logo=FastAPIUsers)](https://fastapi-users.github.io/fastapi-users/10.4/)
-[![Uvicorn](https://img.shields.io/badge/-Uvicorn-464646?logo=Uvicorn)](https://www.uvicorn.org/)
+[![Python](https://img.shields.io/badge/-Python_v3.7+-464646?logo=Python_v3.7+)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/-FastAPI-464646?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![FastAPI Users](https://img.shields.io/badge/-FastAPI_Users-464646?logo=fastapi)](https://fastapi-users.github.io/fastapi-users/10.4/)
+[![Pydantic](https://img.shields.io/badge/-Pydantic-464646?logo=Pydantic)](https://docs.pydantic.dev/)
+[![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-464646?logo=sqlalchemy)](https://www.sqlalchemy.org/)
+[![Alembic](https://img.shields.io/badge/-Alembic-464646?logo=alembic)](https://alembic.sqlalchemy.org/en/latest/)
+[![Uvicorn](https://img.shields.io/badge/-Uvicorn-464646?logo=gunicorn)](https://www.uvicorn.org/)
+[![Google](https://img.shields.io/badge/-Google_Cloud_Drive-464646?logo=google)]()
+[![Google](https://img.shields.io/badge/-Google_Cloud_Sheets-464646?logo=google)](https://developers.google.com/sheets)
 
 [⬆️Оглавление](#оглавление)
 
