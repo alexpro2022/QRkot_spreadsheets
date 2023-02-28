@@ -17,7 +17,10 @@
   - Работа с реляционными БД - Alembic, SQLAlchemy
   - Dependency Injection
   - Google Drive, Google Sheets
-
+[![Python](https://img.shields.io/badge/-Python-464646?logo=Python)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/-FastAPI-464646?logo=FastAPI)](https://fastapi.tiangolo.com/)
+[![FastAPI Users](https://img.shields.io/badge/-FastAPIUSERS-464646?logo=FastAPIUsers)](https://fastapi-users.github.io/fastapi-users/10.4/)
+[![Uvicorn](https://img.shields.io/badge/-Uvicorn-464646?logo=Uvicorn)](https://www.uvicorn.org/)
 
 [⬆️Оглавление](#оглавление)
 
