@@ -13,7 +13,7 @@
 
 
 ## Технологии
-[![Python](https://img.shields.io/badge/-Python_v3.7+-464646?logo=Python_v3.7+)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/-Python_v3.7+-464646?logo=Python)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/-FastAPI-464646?logo=fastapi)](https://fastapi.tiangolo.com/)
 [![FastAPI Users](https://img.shields.io/badge/-FastAPI_Users-464646?logo=fastapi)](https://fastapi-users.github.io/fastapi-users/10.4/)
 [![Pydantic](https://img.shields.io/badge/-Pydantic-464646?logo=Pydantic)](https://docs.pydantic.dev/)
