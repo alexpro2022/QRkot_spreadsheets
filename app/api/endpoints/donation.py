@@ -4,13 +4,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app import schemas
-from app.core import (
-    calculate_investments,
-    current_user,
-    current_superuser,
-    get_async_session,
-    settings,
-)
+from app.core import (calculate_investments, current_superuser, current_user,
+                      get_async_session, settings)
 from app.crud import charity_crud, donation_crud
 from app.models import User
 

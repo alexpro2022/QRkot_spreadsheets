@@ -1,14 +1,9 @@
-from app.schemas.charity_project import (  # noqa
-    CharityCreate,  # noqa
-    CharityResponse,  # naqa
-    CharityUpdate)  # naqa
-
-from app.schemas.donation import (  # noqa
-    DonationPayload,  # noqa
-    DonationResponseFull,  # noqa
-    DonationResponsePartial,)  # noqa
-
-from app.schemas.user import (  # noqa
-    UserCreate,  # noqa
-    UserRead,  # noqa
-    UserUpdate,)  # noqa
+from app.schemas.charity_project import CharityCreate  # noqa
+from app.schemas.charity_project import CharityResponse  # noqa
+from app.schemas.charity_project import CharityUpdate  # noqa; naqa
+from app.schemas.donation import DonationPayload  # noqa
+from app.schemas.donation import DonationResponseFull  # noqa
+from app.schemas.donation import DonationResponsePartial  # noqa; noqa
+from app.schemas.user import UserCreate  # noqa
+from app.schemas.user import UserRead  # noqa
+from app.schemas.user import UserUpdate  # noqa; noqa

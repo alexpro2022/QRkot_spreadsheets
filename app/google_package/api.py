@@ -7,15 +7,15 @@ Endpoints for the following operations:
   * delete_spreadsheet - allows to delete the desired spreadsheet;
   * clear_disk - allows to delete all the spreadsheets from the disk;
 """
-from typing import List, Dict
+from typing import Dict, List
 
 from aiogoogle import Aiogoogle
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core import current_superuser, get_async_session
-from .client import google_client
 
+from .client import google_client
 
 router = APIRouter(prefix='/google', tags=['Google'])
 

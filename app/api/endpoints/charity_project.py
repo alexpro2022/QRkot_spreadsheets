@@ -4,14 +4,9 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app import schemas
-from app.core import (
-    calculate_investments,
-    current_superuser,
-    get_async_session,
-    settings,
-)
+from app.core import (calculate_investments, current_superuser,
+                      get_async_session, settings)
 from app.crud import charity_crud, donation_crud
-
 
 router = APIRouter(prefix='/charity_project', tags=['Charity Projects'])
 

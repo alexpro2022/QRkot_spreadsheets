@@ -4,7 +4,7 @@ from typing import Any, Dict, Generic, List, Optional, Type, TypeVar
 from fastapi import HTTPException
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
-from sqlalchemy import select, exc
+from sqlalchemy import exc, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core import Base

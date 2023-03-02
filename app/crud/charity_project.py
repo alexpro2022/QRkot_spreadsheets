@@ -2,11 +2,10 @@ from http import HTTPStatus
 from typing import Dict, List, Optional
 
 from fastapi import HTTPException
-
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.crud.base import CRUDBase
 from app import models, schemas
+from app.crud.base import CRUDBase
 
 
 class CharityCRUD(CRUDBase[
