@@ -105,13 +105,13 @@ class GoogleBaseClient:
 
     async def get_spreadsheet_create_body(
         self, session: Optional[AsyncSession] = None,
-    ):
+    ) -> Dict[str, str]:
         raise NotImplementedError(
             'method _get_spreadsheet_create_body()` must be implemented.')
 
     async def get_spreadsheet_update_body(
         self, session: Optional[AsyncSession] = None,
-    ):
+    ) -> Dict[str, str]:
         raise NotImplementedError(
             'method _get_spreadsheet_update_body()` must be implemented.')
 

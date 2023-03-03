@@ -1,33 +1,40 @@
 import types
 
+from app.google_package.base import GoogleBaseClient
+
 try:
-    from app.core import google_client
+    from app.google_package import base
 except (NameError, ImportError):
     raise AssertionError(
-        'Не обнаружен файл `google_client`. '
-        'Проверьте и поправьте: он должн быть доступен в модуле `app.core`.',
+        'Не обнаружен файл `base.py`. '
+        'Проверьте и поправьте: он должн быть доступен в директории `app/google_package/`.',
+    )
+
+
+def test_google_base_client():
+    assert hasattr(base, 'GoogleBaseClient'), (
+        'В файле `base.py` не обнаружен класс `GoogleBaseClient`'
     )
 
 
 def test_scopes():
-    assert hasattr(google_client, 'SCOPES'), (
-        'В файле `google_client` не обнаружена переменная `SCOPES`'
+    assert hasattr(GoogleBaseClient, 'SCOPES'), (
+        'В классе `GoogleBaseClient` не обнаружена переменная `SCOPES`'
     )
-    assert len(google_client.SCOPES) == 2, (
-        'Убедитесь что количество объектов в `google_client.SCOPES` равно двум.'
+    assert len(GoogleBaseClient.SCOPES) == 2, (
+        'Убедитесь что количество объектов в `GoogleBaseClient.SCOPES` равно двум.'
     )
-    for scope in google_client.SCOPES:
+    for scope in GoogleBaseClient.SCOPES:
         assert any(s in scope for s in ['drive', 'spreadsheets']), (
-            'В `google_client.SCOPES` не обнаружен необходимый уровень доступа'
+            'В `GoogleBaseClient.SCOPES` не обнаружен необходимый уровень доступа'
         )
 
 
 def test_info():
-    assert hasattr(google_client, 'INFO'), (
-        'В файле `google_client` не обнаружена переменная `INFO`'
+    assert hasattr(GoogleBaseClient, 'INFO'), (
+        'В классе `GoogleBaseClient` не обнаружена переменная `INFO`'
     )
-    info = google_client.INFO
-    need_info_keys = [
+    for info_key in (  # needed_keys
         'type',
         'project_id',
         'private_key_id',
@@ -38,19 +45,16 @@ def test_info():
         'token_uri',
         'auth_provider_x509_cert_url',
         'client_x509_cert_url',
-    ]
-
-    for info_key in need_info_keys:
-        assert info_key in info, (
-            f'В объекте `google_client.INFO` не обнаружено ключа `{info_key}`'
+    ):
+        assert info_key in GoogleBaseClient.INFO, (
+            f'В объекте `GoogleBaseClient.INFO` не обнаружено ключа `{info_key}`'
         )
 
 
 def test_connect():
-    assert hasattr(google_client, 'get_service'), (
-        'В файле `google_client` не обнаружена функция `get_service`'
+    assert hasattr(GoogleBaseClient, 'get_google_service'), (
+        'В классе `GoogleBaseClient` не обнаружена функция `get_google_service`'
     )
-    service = google_client.get_service()
-    assert isinstance(service, types.AsyncGeneratorType), (
-        'Функция `google_client.get_service` должна возвращать асинхронный генератор.'
+    assert isinstance(GoogleBaseClient().get_google_service(), types.AsyncGeneratorType), (
+        'Функция `GoogleBaseClient.get_google_service` должна возвращать асинхронный генератор.'
     )

@@ -1,4 +1,4 @@
-name: Test Suite
+name: QRkot-spreadsheets Test Suite
 
 on:
   push:

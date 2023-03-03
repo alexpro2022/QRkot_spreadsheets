@@ -53,7 +53,7 @@ class GoogleClient(GoogleBaseClient):
         '**__ВНИМАНИЕ: с диска будут удалены все таблицы!__**'
     )
 
-    async def get_spreadsheet_create_body(self, session) -> Dict:
+    async def get_spreadsheet_create_body(self, session) -> Dict[str, str]:
         return {
             'properties': {
                 'title': f'Отчет от: {self._get_datetime()}',
@@ -62,7 +62,7 @@ class GoogleClient(GoogleBaseClient):
             'sheets': self.SHEETS_PROPERTIES,
         }
 
-    async def get_spreadsheet_update_body(self, session) -> Dict:
+    async def get_spreadsheet_update_body(self, session) -> Dict[str, str]:
         table = [
             ['Отчет от', self._get_datetime()],
             ['Топ проектов по скорости закрытия'],
