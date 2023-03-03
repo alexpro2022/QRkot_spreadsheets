@@ -27,7 +27,7 @@
 [![typing](https://img.shields.io/badge/-typing-464646?logo=Python)](https://docs.python.org/3/library/typing.html)
 
 
-**Фреймворки:**
+**Фреймворк:**
 
 [![FastAPI](https://img.shields.io/badge/-FastAPI-464646?logo=fastapi)](https://fastapi.tiangolo.com/)
 [![encoder](https://img.shields.io/badge/-FastAPI_encoder-464646?logo=fastapi)](https://fastapi.tiangolo.com/tutorial/encoder/)
@@ -37,7 +37,7 @@
 [![Uvicorn](https://img.shields.io/badge/-Uvicorn-464646?logo=Uvicorn)](https://www.uvicorn.org/) 
 
 
-**Базы данных:**
+**База данных:**
 
 [![SQLite3](https://img.shields.io/badge/-SQLite3-464646?logo=SQLite)](https://www.sqlite.com/version3.html)
 [![aiosqlite](https://img.shields.io/badge/-aiosqlite:%20Sqlite%20for%20AsyncIO-464646?logo=SQLite)](https://pypi.org/project/aiosqlite/)
