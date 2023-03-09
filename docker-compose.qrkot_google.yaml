@@ -9,7 +9,7 @@ services:
     env_file:
       - ./.env
 
-  web:
+  web_qrkot_google:
     image: alexpro1972/google
     restart: always
     depends_on: 

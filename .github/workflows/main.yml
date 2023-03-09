@@ -75,7 +75,7 @@ jobs:
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/google
             sudo docker-compose stop
-            sudo docker-compose rm web
+            sudo docker-compose rm web_qrkot_google
 
             touch .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
@@ -98,7 +98,7 @@ jobs:
             echo CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }} >> .env
             echo EMAIL=${{ secrets.EMAIL }} >> .env
 
-            sudo docker-compose up -d 
+            sudo docker-compose -f docker-compose.qrkot_google.yaml up -d 
 
   send_message:
     runs-on: ubuntu-latest
