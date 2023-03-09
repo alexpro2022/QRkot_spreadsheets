@@ -39,9 +39,6 @@
 
 **База данных:**
 
-[![SQLite3](https://img.shields.io/badge/-SQLite3-464646?logo=SQLite)](https://www.sqlite.com/version3.html)
-[![aiosqlite](https://img.shields.io/badge/-aiosqlite:%20Sqlite%20for%20AsyncIO-464646?logo=SQLite)](https://pypi.org/project/aiosqlite/)
-
 [![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-464646?logo=PostgreSQL)](https://www.postgresql.org/)
 [![asyncpg](https://img.shields.io/badge/-asyncpg-464646?logo=PostgreSQL)](https://pypi.org/project/asyncpg/)
 [![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-464646?logo=sqlalchemy)](https://www.sqlalchemy.org/)
@@ -141,7 +138,7 @@ cp env_example .env
 
 7. В проекте уже инициализирована система миграций Alembic с настроенной автогенерацией имен внешних ключей моделей и создан файл первой миграции. Чтобы ее применить, необходимо выполнить команду:
 ```
-(venv) ...$ alembic upgrade head
+alembic upgrade head
 ```
 Будут созданы все таблицы из файла миграций.
 
@@ -153,7 +150,7 @@ cp env_example .env
 Из корневой директории проекта выполните команду:
 
 ```
-(venv) $  uvicorn app.main:app
+uvicorn app.main:app
 ```
 Сервер uvicorn запустит приложение по адресу http://127.0.0.1:8000.
 При первом запуске будет создан суперюзер (пользователь с правами админа) с параметрами указанными в переменных окружения FIRST_SUPERUSER_EMAIL и FIRST_SUPERUSER_PASSWORD в **.env**-файле.
