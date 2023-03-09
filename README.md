@@ -41,6 +41,9 @@
 
 [![SQLite3](https://img.shields.io/badge/-SQLite3-464646?logo=SQLite)](https://www.sqlite.com/version3.html)
 [![aiosqlite](https://img.shields.io/badge/-aiosqlite:%20Sqlite%20for%20AsyncIO-464646?logo=SQLite)](https://pypi.org/project/aiosqlite/)
+
+[![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-464646?logo=PostgreSQL)](https://www.postgresql.org/)
+[![asyncpg](https://img.shields.io/badge/-asyncpg-464646?logo=PostgreSQL)](https://pypi.org/project/asyncpg/)
 [![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-464646?logo=sqlalchemy)](https://www.sqlalchemy.org/)
 [![asyncio](https://img.shields.io/badge/-asyncio-464646?logo=sqlalchemy)](https://docs.sqlalchemy.org/en/14/orm/extensions/asyncio.html)
 [![orm](https://img.shields.io/badge/-orm-464646?logo=sqlalchemy)](https://docs.sqlalchemy.org/en/14/orm/quickstart.html)

@@ -136,3 +136,4 @@ fastapi.db
 test.db
 
 =GARB=/
+infra/
