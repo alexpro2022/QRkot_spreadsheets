@@ -10,7 +10,7 @@ services:
       - ./.env
 
   web:
-    build: .
+    image: alexpro1972/google
     restart: always
     depends_on: 
       - db
