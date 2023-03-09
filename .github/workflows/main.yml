@@ -75,7 +75,7 @@ jobs:
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/google
             sudo docker-compose stop
-            sudo docker-compose rm web_qrkot_google
+            # sudo docker-compose rm web_qrkot_google
 
             touch .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
