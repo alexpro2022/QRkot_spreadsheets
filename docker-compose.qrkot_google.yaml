@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   db_qrkot_google:
-    image: postgres
+    image: postgres:15.0-alpine
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
@@ -12,11 +12,12 @@ services:
 
   web_qrkot_google:
     image: alexpro1972/google
+    # build: .
     restart: always
     depends_on: 
       - db_qrkot_google
     ports: 
-      - 3000:8000
+      - 80:8000
     env_file:
       - ./.env
 
