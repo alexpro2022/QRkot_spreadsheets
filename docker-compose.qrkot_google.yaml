@@ -12,7 +12,6 @@ services:
 
   web_qrkot_google:
     image: alexpro1972/google
-    # build: .
     restart: always
     depends_on: 
       - db_qrkot_google
