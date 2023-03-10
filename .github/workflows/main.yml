@@ -79,11 +79,7 @@ jobs:
 
             touch .env
             echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
-            echo DB_NAME=${{ secrets.DB_NAME }} >> .env
-            echo POSTGRES_USERNAME=${{ secrets.POSTGRES_USERNAME }} >> .env
             echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
-            echo DB_HOST=${{ secrets.DB_HOST }} >> .env
-            echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             echo SECRET=${{ secrets.SECRET }} >> .env
             echo FIRST_SUPERUSER_EMAIL=${{ secrets.FIRST_SUPERUSER_EMAIL }} >> .env
             echo FIRST_SUPERUSER_PASSWORD=${{ secrets.FIRST_SUPERUSER_PASSWORD }} >> .env
@@ -99,7 +95,7 @@ jobs:
             echo CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }} >> .env
             echo EMAIL=${{ secrets.EMAIL }} >> .env
 
-            sudo docker-compose -f docker-compose.qrkot_google.yaml up # -d 
+            sudo docker-compose -f docker-compose.qrkot_google.yaml up -d 
 
   send_message:
     runs-on: ubuntu-latest

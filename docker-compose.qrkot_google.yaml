@@ -2,6 +2,7 @@ version: '3.3'
 services:
   db_qrkot_google:
     image: postgres
+    restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     expose:
