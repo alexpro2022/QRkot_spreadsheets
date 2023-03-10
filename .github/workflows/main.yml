@@ -76,7 +76,7 @@ jobs:
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/google
             sudo docker-compose stop
             # sudo docker-compose rm web_qrkot_google
-            # sudo rm .env_qrkot_google
+            sudo rm .env_qrkot_google
 
             touch .env_qrkot_google
             echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env_qrkot_google
