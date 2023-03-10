@@ -99,7 +99,7 @@ jobs:
             echo CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }} >> .env
             echo EMAIL=${{ secrets.EMAIL }} >> .env
 
-            sudo docker-compose -f docker-compose.qrkot_google.yaml up -d 
+            sudo docker-compose -f docker-compose.qrkot_google.yaml up # -d 
 
   send_message:
     runs-on: ubuntu-latest
