@@ -8,7 +8,7 @@ services:
     expose:
       - 5432
     env_file:
-      - ./.env
+      - ./.env_qrkot_google
 
   web_qrkot_google:
     image: alexpro1972/google
@@ -18,7 +18,7 @@ services:
     ports: 
       - 80:8000
     env_file:
-      - ./.env
+      - ./.env_qrkot_google
 
 volumes:
   postgres_data:      

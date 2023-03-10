@@ -76,24 +76,25 @@ jobs:
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/google
             sudo docker-compose stop
             # sudo docker-compose rm web_qrkot_google
+            # sudo rm .env_qrkot_google
 
-            touch .env
-            echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
-            echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
-            echo SECRET=${{ secrets.SECRET }} >> .env
-            echo FIRST_SUPERUSER_EMAIL=${{ secrets.FIRST_SUPERUSER_EMAIL }} >> .env
-            echo FIRST_SUPERUSER_PASSWORD=${{ secrets.FIRST_SUPERUSER_PASSWORD }} >> .env
-            echo TYPE=${{ secrets.TYPE }} >> .env
-            echo PROJECT_ID=${{ secrets.PROJECT_ID }} >> .env
-            echo PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }} >> .env
-            echo PRIVATE_KEY=${{ secrets.PRIVATE_KEY }} >> .env
-            echo CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }} >> .env
-            echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
-            echo AUTH_URI=${{ secrets.AUTH_URI }} >> .env
-            echo TOKEN_URI=${{ secrets.TOKEN_URI }} >> .env
-            echo AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }} >> .env
-            echo CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }} >> .env
-            echo EMAIL=${{ secrets.EMAIL }} >> .env
+            touch .env_qrkot_google
+            echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env_qrkot_google
+            echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env_qrkot_google
+            echo SECRET=${{ secrets.SECRET }} >> .env_qrkot_google
+            echo FIRST_SUPERUSER_EMAIL=${{ secrets.FIRST_SUPERUSER_EMAIL }} >> .env_qrkot_google
+            echo FIRST_SUPERUSER_PASSWORD=${{ secrets.FIRST_SUPERUSER_PASSWORD }} >> .env_qrkot_google
+            echo TYPE=${{ secrets.TYPE }} >> .env_qrkot_google
+            echo PROJECT_ID=${{ secrets.PROJECT_ID }} >> .env_qrkot_google
+            echo PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }} >> .env_qrkot_google
+            echo PRIVATE_KEY=${{ secrets.PRIVATE_KEY }} >> .env_qrkot_google
+            echo CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }} >> .env_qrkot_google
+            echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env_qrkot_google
+            echo AUTH_URI=${{ secrets.AUTH_URI }} >> .env_qrkot_google
+            echo TOKEN_URI=${{ secrets.TOKEN_URI }} >> .env_qrkot_google
+            echo AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }} >> .env_qrkot_google
+            echo CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }} >> .env_qrkot_google
+            echo EMAIL=${{ secrets.EMAIL }} >> .env_qrkot_google
 
             sudo docker-compose -f docker-compose.qrkot_google.yaml up -d 
 
