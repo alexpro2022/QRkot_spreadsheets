@@ -9,8 +9,7 @@
 ## Оглавление
 - [Технологии](#технологии)
 - [Описание работы](#описание-работы)
-- [Установка](#установка)
-- [Запуск](#запуск)
+- [Установка и запуск](#установка-и-запуск)
 - [Применение](#применение)
 - [Автор](#автор)
 
@@ -96,7 +95,7 @@
 
 
 
-## Установка:
+## Установка и запуск:
 1. Клонируйте репозиторий с GitHub:
 ```
 git clone git@github.com:alexpro2022/QRkot_spreadsheets.git
@@ -106,6 +105,9 @@ git clone git@github.com:alexpro2022/QRkot_spreadsheets.git
 ```
 cd QRkot_spreadsheets
 ```
+
+<details>
+  <summary>Локально: Uvicorn</summary>
 
 3. Создайте и активируйте виртуальное окружение:
 ```
@@ -122,9 +124,7 @@ python -m venv venv
 
 4. Установите в виртуальное окружение все необходимые зависимости из файла **requirements.txt**:
 ```
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-pip list
+python -m pip install --upgrade pip && pip install -r requirements.txt && pip list
 ```
 
 5. Скопируйте содержимое файла **env_example** (при этом будет создан файл *.env*):
@@ -142,12 +142,7 @@ alembic upgrade head
 ```
 Будут созданы все таблицы из файла миграций.
 
-[⬆️Оглавление](#оглавление)
-
-
-
-## Запуск:
-Из корневой директории проекта выполните команду:
+8. Из корневой директории проекта выполните команду:
 
 ```
 uvicorn app.main:app
@@ -157,6 +152,7 @@ uvicorn app.main:app
 
 [⬆️Оглавление](#оглавление)
 
+</details>
 
 
 ## Применение:
