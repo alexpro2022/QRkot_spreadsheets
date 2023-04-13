@@ -117,10 +117,10 @@ cd QRkot_spreadsheets
 cp env_example .env
 ```
 
-4. Откройте новый **.env**-файл, раскомментируйте соответствующий способ запуска и введите остальные данные для переменных окружения.
+4. Откройте новый **.env**-файл, раскомментируйте соответствующий способ локального запуска и введите остальные данные для переменных окружения.
 
 <details>
-  <summary>Локально: Uvicorn</summary>
+  <summary>Локальный запуск: Uvicorn</summary>
 
 5. Создайте и активируйте виртуальное окружение:
 ```
@@ -158,7 +158,7 @@ uvicorn app.main:app
 </details>
 
 <details>
-  <summary>Локально: Docker Compose</summary>
+  <summary>Локальный запуск: Docker Compose</summary>
 
 5. Из корневой директории проекта выполните команду:
 
@@ -177,7 +177,7 @@ docker compose -f infra/docker-compose_local.yaml down
 </details>
 
 <details>
-  <summary>На удаленном сервере: Docker Compose</summary>
+  <summary>Запуск на удаленном сервере: Docker Compose</summary>
 
 </details>
 
