@@ -121,6 +121,9 @@ git clone git@github.com:alexpro2022/QRkot_spreadsheets.git
 cd QRkot_spreadsheets
 ```
 
+<details>
+  <summary>Локальный запуск</summary>
+
 3. Скопируйте содержимое файла **env_example** (при этом будет создан файл *.env*):
 ```
 cp env_example .env
@@ -183,6 +186,7 @@ docker compose -f infra/docker-compose_local.yaml up -d
 docker compose -f infra/docker-compose_local.yaml down
 ```
 
+</details>
 </details>
 
 <details>
