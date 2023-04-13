@@ -82,7 +82,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: ".env, infra/docker-compose.yaml, infra/nginx.conf"
+          source: "infra/docker-compose.yaml, infra/nginx.conf"
           target: ${{ secrets.DEPLOY_DIR }}    
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
@@ -93,9 +93,9 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd ${{ secrets.DEPLOY_DIR }}
-            sudo docker rm -vf $(docker ps -aq)
-            sudo docker rmi -f $(docker images -aq)
-            sudo docker compose up -d --quiet-pull
+            #sudo docker rm -vf $(docker ps -aq)
+            #sudo docker rmi -f $(docker images -aq)
+            #sudo docker compose up -d --quiet-pull
 
   send_message:
     runs-on: ubuntu-latest
