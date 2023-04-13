@@ -83,7 +83,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           source: "infra/docker-compose.yaml, infra/nginx.conf"
-          target: ${{ secrets.DEPLOY_DIR }} 
+          target: "${{ secrets.DEPLOY_DIR }}"
 
   send_message:
     runs-on: ubuntu-latest
