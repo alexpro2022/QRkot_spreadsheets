@@ -65,6 +65,25 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
     steps:
+      - name: Create directory for deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script: |
+            sudo mkdir -p ${{ secrets.DEPLOY_DIR }}
+            sudo chmod 777 ${{ secrets.DEPLOY_DIR }}
+      - name: copy file via ssh
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          source: ".env, infra/docker-compose_server.yaml, infra/nginx.conf"
+          target: ${{ secrets.DEPLOY_DIR }}    
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
@@ -73,30 +92,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/google
-            sudo docker-compose stop
-            # sudo docker-compose rm web_qrkot_google
-            sudo rm .env_qrkot_google
-
-            touch .env_qrkot_google
-            echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env_qrkot_google
-            echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env_qrkot_google
-            echo SECRET=${{ secrets.SECRET }} >> .env_qrkot_google
-            echo FIRST_SUPERUSER_EMAIL=${{ secrets.FIRST_SUPERUSER_EMAIL }} >> .env_qrkot_google
-            echo FIRST_SUPERUSER_PASSWORD=${{ secrets.FIRST_SUPERUSER_PASSWORD }} >> .env_qrkot_google
-            echo TYPE=${{ secrets.TYPE }} >> .env_qrkot_google
-            echo PROJECT_ID=${{ secrets.PROJECT_ID }} >> .env_qrkot_google
-            echo PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }} >> .env_qrkot_google
-            echo PRIVATE_KEY=${{ secrets.PRIVATE_KEY }} >> .env_qrkot_google
-            echo CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }} >> .env_qrkot_google
-            echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env_qrkot_google
-            echo AUTH_URI=${{ secrets.AUTH_URI }} >> .env_qrkot_google
-            echo TOKEN_URI=${{ secrets.TOKEN_URI }} >> .env_qrkot_google
-            echo AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }} >> .env_qrkot_google
-            echo CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }} >> .env_qrkot_google
-            echo EMAIL=${{ secrets.EMAIL }} >> .env_qrkot_google
-
-            sudo docker-compose -f docker-compose.qrkot_google.yaml up -d 
+            cd ${{ secrets.DEPLOY_DIR }}
+            sudo docker rm -vf $(docker ps -aq)
+            sudo docker rmi -f $(docker images -aq)
+            sudo docker compose up -d --quiet-pull
 
   send_message:
     runs-on: ubuntu-latest

@@ -122,7 +122,7 @@ cd QRkot_spreadsheets
 ```
 <hr>
 <details>
-  <summary>Локальный запуск</summary>
+  <summary>Локальный запуск: Uvicorn или Docker Compose</summary>
 
 3. Скопируйте содержимое файла **env_example** (при этом будет создан файл *.env*):
 ```
@@ -194,7 +194,7 @@ docker compose -f infra/docker-compose_local.yaml down
 
 </details>
 <hr>
-При первом запуске будет создан суперюзер (пользователь с правами админа) с параметрами указанными в переменных окружения FIRST_SUPERUSER_EMAIL и FIRST_SUPERUSER_PASSWORD в **.env**-файле.
+При первом запуске будет создан суперюзер (пользователь с правами админа) с параметрами указанными в переменных окружения FIRST_SUPERUSER_EMAIL и FIRST_SUPERUSER_PASSWORD.
 
 [⬆️Оглавление](#оглавление)
 
