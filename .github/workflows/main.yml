@@ -75,6 +75,8 @@ jobs:
           script: |
             sudo mkdir -p ${{ secrets.DEPLOY_DIR }}
             sudo chmod 777 ${{ secrets.DEPLOY_DIR }}
+      - name: Checkout
+        uses: actions/checkout@v3            
       - name: copy file via ssh
         uses: appleboy/scp-action@master
         with:
@@ -83,7 +85,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           source: "infra/docker-compose.yaml, infra/nginx.conf"
-          target: "/home/alexpro1972/QRkot_spreadsheets"  # ${{ secrets.DEPLOY_DIR }}
+          target: ${{ secrets.DEPLOY_DIR }}
 
   send_message:
     runs-on: ubuntu-latest
