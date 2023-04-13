@@ -87,6 +87,8 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           source: "infra/docker-compose.yaml, infra/nginx.conf"
           target: ${{ secrets.DEPLOY_DIR }}
+          overwrite: true
+          strip_components: 1
 
   send_message:
     runs-on: ubuntu-latest
