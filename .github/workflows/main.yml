@@ -75,7 +75,15 @@ jobs:
           script: |
             sudo mkdir -p ${{ secrets.DEPLOY_DIR }}
             # sudo chmod 777 ${{ secrets.DEPLOY_DIR }}
-
+      - name: copy file via ssh
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          source: "infra/docker-compose.yaml, infra/nginx.conf"
+          target: ${{ secrets.DEPLOY_DIR }} 
 
   send_message:
     runs-on: ubuntu-latest
