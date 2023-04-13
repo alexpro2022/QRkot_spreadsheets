@@ -120,7 +120,7 @@ git clone git@github.com:alexpro2022/QRkot_spreadsheets.git
 ```
 cd QRkot_spreadsheets
 ```
-
+<hr>
 <details>
   <summary>Локальный запуск</summary>
 
@@ -188,12 +188,12 @@ docker compose -f infra/docker-compose_local.yaml down
 
 </details>
 </details>
-
+<hr>
 <details>
   <summary>Запуск на удаленном сервере: Docker Compose</summary>
 
 </details>
-
+<hr>
 При первом запуске будет создан суперюзер (пользователь с правами админа) с параметрами указанными в переменных окружения FIRST_SUPERUSER_EMAIL и FIRST_SUPERUSER_PASSWORD в **.env**-файле.
 
 [⬆️Оглавление](#оглавление)
