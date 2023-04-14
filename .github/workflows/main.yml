@@ -105,7 +105,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: "infra/docker-compose.yaml, infra/nginx.conf"
+          source: "infra/docker-compose.yml, infra/nginx.conf"
           target: ${{ secrets.DEPLOY_DIR }}
           overwrite: true
           # strip_components: 1
@@ -122,10 +122,11 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
+            sudo systemctl stop nginx
             cd ${{ secrets.DEPLOY_DIR }}
-            sudo docker rm -vf $(docker ps -aq)
-            sudo docker rmi -f $(docker images -aq)
-            sudo docker compose -f infra/docker-compose.yaml up -d --quiet-pull
+            sudo docker compose -f infra/docker-compose.yml down
+            sudo docker rmi ${{ secrets.DOCKER_USERNAME }}/google
+            sudo docker compose -f infra/docker-compose.yml up -d --quiet-pull
 
   send_message:
     runs-on: ubuntu-latest
