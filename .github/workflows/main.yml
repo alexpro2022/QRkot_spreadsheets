@@ -14,7 +14,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.7, 3.8, 3.9, 3.11]
+        python-version: [3.8, 3.9]  # [3.7, 3.8, 3.9, 3.11]
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -60,7 +60,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/google:latest           
+          tags: ${{ secrets.DOCKER_USERNAME }}/google2:latest           
 
   server_environment:
     runs-on: ubuntu-latest
