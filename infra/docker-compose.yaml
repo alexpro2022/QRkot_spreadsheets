@@ -1,26 +1,26 @@
-# 1
+# 2
 services:
   db:
     image: postgres:15.0-alpine
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    expose:
-      - 5432
+    # expose:
+    #  - 5432
     env_file:
-      - ./.env
+      - ../.env
 
   web:
     image: alexpro1972/google
     restart: always
     depends_on: 
       - db
-    ports: 
-      - 80:8000
+    # ports: 
+    #  - 80:8000
     env_file:
-      - ./.env
+      - ../.env
 
-  nginx_qrkot_google:
+  nginx:
     image: nginx:1.21.3-alpine
     restart: always
     depends_on:
