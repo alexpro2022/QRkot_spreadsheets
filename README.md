@@ -110,6 +110,11 @@
    и получил JSON-файл с информацией о своем сервисном аккаунте, его приватный ключ, ID и ссылки для авторизации.
    Эти данные будет необходимо указать в файле переменных окружения.
  - Пользователь установил [Docker](https://docs.docker.com/engine/install/) на локальной машине или на удаленном сервере, где проект будет запускаться в контейнерах.
+ - Пользователь создал аккаунт [DockerHub](https://hub.docker.com/) если запуск будет производится на удаленном сервере.
+
+<hr>
+<details>
+  <summary>Локальный запуск: Uvicorn или Docker Compose</summary> 
 
 1. Клонируйте репозиторий с GitHub:
 ```
@@ -120,16 +125,13 @@ git clone git@github.com:alexpro2022/QRkot_spreadsheets.git
 ```
 cd QRkot_spreadsheets
 ```
-<hr>
-<details>
-  <summary>Локальный запуск: Uvicorn или Docker Compose</summary>
 
 3. Скопируйте содержимое файла **env_example** (при этом будет создан файл *.env*):
 ```
 cp env_example .env
 ```
 
-4. Откройте новый **.env**-файл, раскомментируйте нужный вам способ локального запуска и введите остальные данные для переменных окружения.
+4. Откройте новый **.env**-файл, раскомментируйте нужный вам способ локального запуска (Uvicorn или Docker Compose) и введите остальные данные для переменных окружения.
 
 <details>
   <summary>Локальный запуск: Uvicorn</summary>
@@ -149,7 +151,7 @@ python -m venv venv
 
 6. Установите в виртуальное окружение все необходимые зависимости из файла **requirements.txt**:
 ```
-python -m pip install --upgrade pip && pip install -r requirements.txt && pip list
+python -m pip install --upgrade pip && pip install -r requirements.txt
 ```
 
 7. В проекте уже инициализирована система миграций Alembic с настроенной автогенерацией имен внешних ключей моделей и создан файл первой миграции. Чтобы ее применить, необходимо выполнить команду:
@@ -191,7 +193,7 @@ docker compose -f infra/docker-compose_local.yml down
 <hr>
 <details>
   <summary>Запуск на удаленном сервере: Docker Compose</summary>
-
+1. Сделайте [форк и клонируйте] репозиторий на 
 </details>
 <hr>
 При первом запуске будет создан суперюзер (пользователь с правами админа) с параметрами указанными в переменных окружения FIRST_SUPERUSER_EMAIL и FIRST_SUPERUSER_PASSWORD.
