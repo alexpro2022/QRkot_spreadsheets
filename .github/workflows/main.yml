@@ -96,6 +96,7 @@ jobs:
               AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}
               CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}
               EMAIL=${{ secrets.EMAIL }}
+              DEPLOY_DIR=${{ secrets.DEPLOY_DIR }}
             _EOF_
       - name: copy infra files via ssh
         uses: appleboy/scp-action@master
@@ -122,8 +123,8 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd ${{ secrets.DEPLOY_DIR }}
-            #sudo docker rm -vf $(docker ps -aq)
-            #sudo docker rmi -f $(docker images -aq)
+            sudo docker rm -vf $(docker ps -aq)
+            sudo docker rmi -f $(docker images -aq)
             sudo docker compose -f infra/docker-compose.yaml up -d --quiet-pull
 
   send_message:
