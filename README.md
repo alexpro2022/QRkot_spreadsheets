@@ -110,7 +110,7 @@
    и получил JSON-файл с информацией о своем сервисном аккаунте, его приватный ключ, ID и ссылки для авторизации.
    Эти данные будет необходимо указать в файле переменных окружения.
  - Пользователь установил [Docker](https://docs.docker.com/engine/install/) на локальной машине или на удаленном сервере, где проект будет запускаться в контейнерах.
- - Пользователь создал аккаунт [DockerHub](https://hub.docker.com/) если запуск будет производится на удаленном сервере.
+ - Пользователь создал аккаунт [DockerHub](https://hub.docker.com/), если запуск будет производится на удаленном сервере.
 
 <hr>
 <details>
@@ -193,7 +193,57 @@ docker compose -f infra/docker-compose_local.yml down
 <hr>
 <details>
   <summary>Запуск на удаленном сервере: Docker Compose</summary>
-1. Сделайте [форк и клонируйте] репозиторий на 
+
+1. Сделайте [форк](https://docs.github.com/en/get-started/quickstart/fork-a-repo) в свой репозиторий.
+
+2. Создайте Actions.secrets согласно списку ниже (значения указаны для примера):
+
+```
+# Директория на сервере, где будут размещаться служебные файлы:
+DEPLOY_DIR
+
+# DockerHub credentials:
+DOCKER_PASSWORD
+DOCKER_USERNAME
+
+# Данные сервера и ssh-подключения:
+HOST
+USER
+SSH_KEY
+PASSPHRASE
+
+# Данные Телеграмма - chat_id, token
+TELEGRAM_TO
+TELEGRAM_TOKEN
+
+# Данные БД postgres:
+DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/postgres
+POSTGRES_PASSWORD
+
+SECRET=qwerty
+FIRST_SUPERUSER_EMAIL=first@ya.ru
+FIRST_SUPERUSER_PASSWORD=password
+
+# Почтовый адрес вашего личного аккаунта Google:
+EMAIL=
+
+# Укажите данные для работы ваших Python-приложений с подключёнными Google API
+# Эти данные передаются платформой (Google Cloud Platform) в json-файле 
+# при создании ключа доступа к вашему сервисному аккаунту
+TYPE=
+PROJECT_ID=
+PRIVATE_KEY_ID=
+PRIVATE_KEY=
+CLIENT_EMAIL=
+CLIENT_ID=
+AUTH_URI=
+TOKEN_URI=
+AUTH_PROVIDER_X509_CERT_URL=
+CLIENT_X509_CERT_URL=
+```
+
+3. Запустите вручную workflow, чтобы автоматически развернуть проект в трех docker-контейнерах на удаленном сервере.
+
 </details>
 <hr>
 При первом запуске будет создан суперюзер (пользователь с правами админа) с параметрами указанными в переменных окружения FIRST_SUPERUSER_EMAIL и FIRST_SUPERUSER_PASSWORD.
