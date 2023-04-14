@@ -60,7 +60,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/google22:latest           
+          tags: ${{ secrets.DOCKER_USERNAME }}/google222:latest           
 
   server_environment:
     runs-on: ubuntu-latest
