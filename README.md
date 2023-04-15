@@ -177,7 +177,7 @@ uvicorn app.main:app
 5. Из корневой директории проекта выполните команду:
 
 ```
-docker compose -f infra/docker-compose_local.yml up -d
+docker compose -f infra/local/docker-compose.yml up -d
 ```
 Проект будет развернут в трех docker-контейнерах по адресу http://localhost.
 Администрирование приложения может быть осуществлено через Swagger доступный по адресу http://localhost/docs (далее см. [Применение](#применение)).
@@ -185,7 +185,7 @@ docker compose -f infra/docker-compose_local.yml up -d
 6. Остановить docker можно командой из корневой директории проекта:
 
 ```
-docker compose -f infra/docker-compose_local.yml down
+docker compose -f infra/local/docker-compose.yml down
 ```
 
 </details>
