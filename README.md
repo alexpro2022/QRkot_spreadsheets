@@ -17,7 +17,7 @@
 ## Технологии
 
 
-**Языки программирования, библиотеки:**
+**Языки программирования, библиотеки и модули:**
 
 [![Python](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue?logo=python)](https://www.python.org/)
 [![contextlib](https://img.shields.io/badge/-contextlib-464646?logo=Python)](https://docs.python.org/3/library/contextlib.html)
@@ -26,7 +26,7 @@
 [![typing](https://img.shields.io/badge/-typing-464646?logo=Python)](https://docs.python.org/3/library/typing.html)
 
 
-**Фреймворк:**
+**Фреймворк, расширения и библиотеки:**
 
 [![FastAPI](https://img.shields.io/badge/-FastAPI-464646?logo=fastapi)](https://fastapi.tiangolo.com/)
 [![encoder](https://img.shields.io/badge/-FastAPI_encoder-464646?logo=fastapi)](https://fastapi.tiangolo.com/tutorial/encoder/)
@@ -36,7 +36,7 @@
 [![Uvicorn](https://img.shields.io/badge/-Uvicorn-464646?logo=Uvicorn)](https://www.uvicorn.org/) 
 
 
-**База данных:**
+**Базы данных и инструменты работы с БД:**
 
 [![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-464646?logo=PostgreSQL)](https://www.postgresql.org/)
 [![asyncpg](https://img.shields.io/badge/-asyncpg-464646?logo=PostgreSQL)](https://pypi.org/project/asyncpg/)
@@ -46,7 +46,7 @@
 [![Alembic](https://img.shields.io/badge/-Alembic-464646?logo=alembic)](https://alembic.sqlalchemy.org/en/latest/)
 
 
-**Тесты:**
+**Тестирование:**
 
 [![Pytest](https://img.shields.io/badge/-Pytest-464646?logo=Pytest)](https://docs.pytest.org/en/latest/)
 [![Pytest-asyncio](https://img.shields.io/badge/-Pytest--asyncio-464646?logo=Pytest)](https://pypi.org/project/pytest-asyncio/)
@@ -54,20 +54,16 @@
 [![Coverage](https://img.shields.io/badge/-Coverage-464646?logo=Python)](https://coverage.readthedocs.io/en/latest/)
 
 
-**Контейнеризация:**
-
-[![docker](https://img.shields.io/badge/-Docker-464646?logo=docker)](https://www.docker.com/)
-[![docker_compose](https://img.shields.io/badge/-Docker%20Compose-464646?logo=docker)](https://docs.docker.com/compose/)
-[![Nginx](https://img.shields.io/badge/-NGINX-464646?logo=NGINX)](https://nginx.org/ru/)
-
-
 **CI/CD:**
 
-[![GitHub](https://img.shields.io/badge/-GitHub-464646?logo=GitHub)](https://docs.github.com/en)
 [![GitHub_Actions](https://img.shields.io/badge/-GitHub_Actions-464646?logo=GitHub)](https://docs.github.com/en/actions)
 [![docker_hub](https://img.shields.io/badge/-Docker_Hub-464646?logo=docker)](https://hub.docker.com/)
+[![docker_compose](https://img.shields.io/badge/-Docker%20Compose-464646?logo=docker)](https://docs.docker.com/compose/)
+[![Nginx](https://img.shields.io/badge/-NGINX-464646?logo=NGINX)](https://nginx.org/ru/)
 [![Yandex.Cloud](https://img.shields.io/badge/-Yandex.Cloud-464646?logo=Yandex)](https://cloud.yandex.ru/)
 [![Telegram](https://img.shields.io/badge/-Telegram-464646?logo=Telegram)](https://core.telegram.org/api)
+
+[⬆️Оглавление](#оглавление)
 
 
 **Облачные технологии:**
@@ -75,7 +71,6 @@
 [![Google](https://img.shields.io/badge/-Google_Cloud_Drive-464646?logo=google)](https://developers.google.com/drive)
 [![Google](https://img.shields.io/badge/-Google_Cloud_Sheets-464646?logo=google)](https://developers.google.com/sheets)
 [![Aiogoogle](https://img.shields.io/badge/-Aiogoogle-464646?logo=google)](https://aiogoogle.readthedocs.io/en/latest/)
-
 
 [⬆️Оглавление](#оглавление)
 
@@ -134,7 +129,7 @@ cp env_example .env
 4. Откройте новый **.env**-файл, раскомментируйте нужный вам способ локального запуска (Uvicorn или Docker Compose) и введите остальные данные для переменных окружения.
 
 <details>
-  <summary>Локальный запуск: Uvicorn</summary>
+<summary>Локальный запуск: Uvicorn</summary>
 
 5. Создайте и активируйте виртуальное окружение:
 ```
@@ -161,7 +156,6 @@ alembic upgrade head
 Будут созданы все таблицы из файла миграций.
 
 8. Из корневой директории проекта выполните команду:
-
 ```
 uvicorn app.main:app
 ```
@@ -170,59 +164,56 @@ uvicorn app.main:app
 
 9. Остановить uvicorn можно комбинацией клавиш Ctl-C.
 </details>
-
 <details>
-  <summary>Локальный запуск: Docker Compose</summary>
+<summary>Локальный запуск: Docker Compose</summary>
 
 5. Из корневой директории проекта выполните команду:
-
 ```
 docker compose -f infra/local/docker-compose.yml up -d
 ```
-Проект будет развернут в трех docker-контейнерах по адресу http://localhost.
+Проект будет развернут в трех docker-контейнерах (postgres, application, nginx) по адресу http://localhost.
 Администрирование приложения может быть осуществлено через Swagger доступный по адресу http://localhost/docs (далее см. [Применение](#применение)).
 
-6. Остановить docker можно командой из корневой директории проекта:
-
+6. Остановить docker и удалить контейнеры можно командой из корневой директории проекта:
 ```
 docker compose -f infra/local/docker-compose.yml down
 ```
-
+Если также необходимо удалить том базы данных:
+```
+docker compose -f infra/local/docker-compose.yml down -v
+```
 </details>
 </details>
 <hr>
 <details>
-  <summary>Запуск на удаленном сервере: Docker Compose</summary>
+<summary>Запуск на удаленном сервере: Docker Compose</summary>
 
 1. Сделайте [форк](https://docs.github.com/en/get-started/quickstart/fork-a-repo) в свой репозиторий.
 
 2. Создайте Actions.secrets согласно списку ниже (значения указаны для примера):
 
 ```
-# Путь к директории на сервере, где будут размещаться служебные файлы проекта:
-DEPLOY_DIR
+PROJECT_NAME=qrkot_spreadsheets
+CODECOV_TOKEN= 
 
-# DockerHub credentials:
-DOCKER_PASSWORD
-DOCKER_USERNAME
+DOCKERHUB_USERNAME= 
+DOCKERHUB_PASSWORD= 
 
-# Данные сервера и ssh-подключения:
-HOST
-USER
-SSH_KEY
-PASSPHRASE
+# Данные удаленного сервера и ssh-подключения:
+HOST= 
+USERNAME= 
+SSH_KEY=     
+PASSPHRASE= 
 
-# Данные Телеграмма - chat_id, token
-TELEGRAM_TO
-TELEGRAM_TOKEN
+TELEGRAM_USER_ID= 
+TELEGRAM_BOT_TOKEN= 
 
-# Данные БД postgres:
+POSTGRES_PASSWORD= 
 DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/postgres
-POSTGRES_PASSWORD
 
 SECRET=qwerty
-FIRST_SUPERUSER_EMAIL=first@ya.ru
-FIRST_SUPERUSER_PASSWORD=password
+FIRST_SUPERUSER_EMAIL=
+FIRST_SUPERUSER_PASSWORD=
 
 # Почтовый адрес вашего личного аккаунта Google:
 EMAIL=
@@ -243,7 +234,6 @@ CLIENT_X509_CERT_URL=
 ```
 
 3. Запустите вручную workflow, чтобы автоматически развернуть проект в трех docker-контейнерах на удаленном сервере.
-
 </details>
 <hr>
 При первом запуске будет создан суперюзер (пользователь с правами админа) с параметрами указанными в переменных окружения FIRST_SUPERUSER_EMAIL и FIRST_SUPERUSER_PASSWORD.

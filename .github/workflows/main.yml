@@ -13,7 +13,7 @@ jobs:
     name: Tests flake8 and pytest
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 5
+      max-parallel: 4
       matrix:
         python-version: [3.7, 3.8, 3.9, 3.11]
     steps:
@@ -54,14 +54,14 @@ jobs:
       - name: Login to Docker 
         uses: docker/login-action@v1 
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Push to Docker Hub 
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/google:latest           
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest           
 
   server_environment:
     runs-on: ubuntu-latest
@@ -69,21 +69,22 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3    
-      - name: Create directory and .env-file
+      - name: Create project directory and .env-file
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            sudo mkdir -p ${{ secrets.DEPLOY_DIR }}
-            sudo chmod 777 ${{ secrets.DEPLOY_DIR }} 
-            cd ${{ secrets.DEPLOY_DIR }}
-            sudo cat > .env << _EOF_
+            sudo mkdir -p ${{ secrets.PROJECT_NAME }}
+            sudo chmod 777 ${{ secrets.PROJECT_NAME }} 
+            sudo cat > ${{ secrets.PROJECT_NAME }}/.env << _EOF_
               DATABASE_URL=${{ secrets.DATABASE_URL }}
               POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
               SECRET=${{ secrets.SECRET }}
+              PROJECT_NAME=${{ secrets.PROJECT_NAME }}
+              DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
               FIRST_SUPERUSER_EMAIL=${{ secrets.FIRST_SUPERUSER_EMAIL }}
               FIRST_SUPERUSER_PASSWORD=${{ secrets.FIRST_SUPERUSER_PASSWORD }}
               TYPE=${{ secrets.TYPE }}
@@ -97,19 +98,18 @@ jobs:
               AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}
               CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}
               EMAIL=${{ secrets.EMAIL }}
-              DEPLOY_DIR=${{ secrets.DEPLOY_DIR }}
             _EOF_
       - name: copy infra files via ssh
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           source: "infra/docker-compose.yml, infra/nginx.conf"
-          target: ${{ secrets.DEPLOY_DIR }}
+          target: ${{ secrets.PROJECT_NAME }}
           overwrite: true
-          # strip_components: 1
+          strip_components: 1
 
   deploy:
     runs-on: ubuntu-latest
@@ -119,15 +119,15 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
+            cd ${{ secrets.PROJECT_NAME }}
+            sudo docker compose down
+            sudo docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}
             sudo systemctl stop nginx
-            cd ${{ secrets.DEPLOY_DIR }}
-            sudo docker compose -f infra/docker-compose.yml down
-            sudo docker rmi ${{ secrets.DOCKER_USERNAME }}/google
-            sudo docker compose -f infra/docker-compose.yml up -d --quiet-pull
+            sudo docker compose up -d --quiet-pull
 
   send_message:
     runs-on: ubuntu-latest
@@ -136,6 +136,6 @@ jobs:
       - name: send message
         uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ github.workflow }} проекта QRkot-spreadsheets успешно выполнен!
+          to: ${{ secrets.TELEGRAM_USER_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: ${{ github.workflow }} успешно выполнен!
