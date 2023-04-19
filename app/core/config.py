@@ -16,8 +16,8 @@ class Settings(BaseSettings):
     token_url: str = 'auth/jwt/login'
     auth_backend_name = 'jwt'
     password_length = 3
-    first_superuser_email: Optional[EmailStr] = None
-    first_superuser_password: Optional[str] = None
+    admin_email: Optional[EmailStr] = None
+    admin_password: Optional[str] = None
     # Переменные для Google API
     type: Optional[str] = None
     project_id: Optional[str] = None

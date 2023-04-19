@@ -10,8 +10,8 @@
 # POSTGRES_PASSWORD=postgres
 
 SECRET=qwerty
-FIRST_SUPERUSER_EMAIL=first@ya.ru
-FIRST_SUPERUSER_PASSWORD=password
+ADMIN_EMAIL=adm@adm.ru
+ADMIN_PASSWORD=admin
 
 # Почтовый адрес вашего личного аккаунта Google:
 EMAIL=
