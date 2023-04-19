@@ -63,8 +63,6 @@
 [![Yandex.Cloud](https://img.shields.io/badge/-Yandex.Cloud-464646?logo=Yandex)](https://cloud.yandex.ru/)
 [![Telegram](https://img.shields.io/badge/-Telegram-464646?logo=Telegram)](https://core.telegram.org/api)
 
-[⬆️Оглавление](#оглавление)
-
 
 **Облачные технологии:**
 
