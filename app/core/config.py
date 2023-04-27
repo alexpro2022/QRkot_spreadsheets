@@ -10,8 +10,8 @@ class Settings(BaseSettings):
         'на медицинское обслуживание нуждающихся хвостатых, на обустройство '
         'кошачьей колонии в подвале, на корм оставшимся без попечения '
         'кошкам — на любые цели, связанные с поддержкой кошачьей популяции.')
-    database_url: str = 'sqlite+aiosqlite:///./fastapi.db'  # needs default for tests
-    secret: str = 'SECRET'
+    database_url: str = 'sqlite+aiosqlite:///./fastapi.db'
+    secret_key: str = 'SECRET'
     token_lifetime: int = 3600
     token_url: str = 'auth/jwt/login'
     auth_backend_name = 'jwt'

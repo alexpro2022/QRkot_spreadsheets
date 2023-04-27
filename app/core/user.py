@@ -20,7 +20,7 @@ async def get_user_db(session: AsyncSession = Depends(get_async_session)):
 
 def get_jwt_strategy() -> JWTStrategy:
     return JWTStrategy(
-        secret=settings.secret,
+        secret=settings.secret_key,
         lifetime_seconds=settings.token_lifetime
     )
 

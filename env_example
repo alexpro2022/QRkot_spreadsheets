@@ -1,17 +1,6 @@
-# Введите свои данные в переменные окружения:
-
-# === ВНИМАНИЕ - только один способ запуска может быть активным !!! ===
-
-# === Для активации запуска Uvicorn раскомментируйте строку ниже: ===
-# DATABASE_URL=sqlite+aiosqlite:///./fastapi.db
-
-# === Для активации запуска в docker compose раскомментируйте две строки ниже: ===
-# DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/postgres
-# POSTGRES_PASSWORD=postgres
-
-SECRET=qwerty
-ADMIN_EMAIL=adm@adm.ru
-ADMIN_PASSWORD=admin
+SECRET_KEY=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
 
 # Почтовый адрес вашего личного аккаунта Google:
 EMAIL=

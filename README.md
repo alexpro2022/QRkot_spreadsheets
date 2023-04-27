@@ -100,15 +100,13 @@
 ## Установка и запуск:
 ### Предварительные условия:
 Предполагается, что пользователь:
+ - создал [сервисный аккаунт](https://support.google.com/a/answer/7378726?hl=en) на платформе Google Cloud и получил JSON-файл с информацией о своем сервисном аккаунте, его приватный ключ, ID и ссылки для авторизации. Эти данные будет необходимо указать в файле переменных окружения.
+
  - установил [Docker](https://docs.docker.com/engine/install/) и [Docker Compose](https://docs.docker.com/compose/install/) на локальной машине или на удаленном сервере, где проект будет запускаться в контейнерах. Проверить наличие можно выполнив команды:
     ```
-    docker --version
-    ```
-    ```
-    docker-compose --version
+    docker --version && docker-compose --version
     ```
  - создал аккаунт [DockerHub](https://hub.docker.com/), если запуск будет производится на удаленном сервере.
- - создал [сервисный аккаунт](https://support.google.com/a/answer/7378726?hl=en) на платформе Google Cloud и получил JSON-файл с информацией о своем сервисном аккаунте, его приватный ключ, ID и ссылки для авторизации. Эти данные будет необходимо указать в файле переменных окружения.
 <hr>
 <details>
 <summary>Локальный запуск: Uvicorn или Docker Compose</summary> 
@@ -128,7 +126,7 @@ cd QRkot_spreadsheets
 cp env_example .env
 ```
 
-4. Откройте новый **.env**-файл, раскомментируйте нужный вам способ локального запуска (Uvicorn или Docker Compose) и введите остальные данные для переменных окружения.
+4. Откройте новый **.env**-файл и введите данные для переменных окружения.
 
 <details>
 <summary>Локальный запуск: Uvicorn</summary>
@@ -192,54 +190,35 @@ docker compose -f infra/local/docker-compose.yml down -v
 
 1. Сделайте [форк](https://docs.github.com/en/get-started/quickstart/fork-a-repo) в свой репозиторий.
 
-2. Создайте Actions.Secrets согласно списку ниже (значения указаны для примера):
-
+2. Создайте Actions.Secrets согласно списку ниже (значения указаны для примера) + переменные окружения из env_example файла:
 ```
 PROJECT_NAME=qrkot_spreadsheets
-SECRET=qwerty
+SECRET_KEY
 
-POSTGRES_PASSWORD= 
+POSTGRES_PASSWORD
 DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/postgres
 
-CODECOV_TOKEN= 
+CODECOV_TOKEN 
 
-DOCKERHUB_USERNAME= 
-DOCKERHUB_PASSWORD= 
+DOCKERHUB_USERNAME 
+DOCKERHUB_PASSWORD 
 
 # Данные удаленного сервера и ssh-подключения:
-HOST= 
-USERNAME= 
-SSH_KEY=     
-PASSPHRASE= 
+HOST 
+USERNAME 
+SSH_KEY     
+PASSPHRASE 
 
-TELEGRAM_USER_ID= 
-TELEGRAM_BOT_TOKEN= 
-
-ADMIN_EMAIL=adm@adm.ru
-ADMIN_PASSWORD=admin
-
-# Почтовый адрес вашего личного аккаунта Google:
-EMAIL=
-
-# Укажите данные для работы ваших Python-приложений с подключёнными Google API
-# Эти данные передаются платформой (Google Cloud Platform) в json-файле 
-# при создании ключа доступа к вашему сервисному аккаунту
-TYPE=
-PROJECT_ID=
-PRIVATE_KEY_ID=
-PRIVATE_KEY=
-CLIENT_EMAIL=
-CLIENT_ID=
-AUTH_URI=
-TOKEN_URI=
-AUTH_PROVIDER_X509_CERT_URL=
-CLIENT_X509_CERT_URL=
+# Учетные данные Телеграм-бота для получения сообщения о успешном завершении workflow
+TELEGRAM_USER_ID 
+TELEGRAM_BOT_TOKEN 
 ```
 
 3. Запустите вручную workflow, чтобы автоматически развернуть проект в трех docker-контейнерах (db, web, nginx) на удаленном сервере.
 </details>
 <hr>
-При первом запуске будет создан суперюзер (пользователь с правами админа) с параметрами указанными в переменных окружения ADMIN_EMAIL и ADMIN_PASSWORD.
+
+При первом запуске будет создан суперюзер (пользователь с правами админа) с учетными данными из переменных окружения ADMIN_EMAIL и ADMIN_PASSWORD.
 
 [⬆️Оглавление](#оглавление)
 
