@@ -113,12 +113,12 @@
 
 1. Клонируйте репозиторий с GitHub:
 ```
-git clone git@github.com:alexpro2022/QRkot_spreadsheets.git
+git@github.com:alexpro2022/QRkot_spreadsheets-FastAPI.git
 ```
 
 2. Перейдите в созданную директорию проекта:
 ```
-cd QRkot_spreadsheets
+cd QRkot_spreadsheets-FastAPI
 ```
 
 3. Скопируйте содержимое файла **env_example** (при этом будет создан файл *.env*):
