@@ -113,7 +113,7 @@
 
 1. Клонируйте репозиторий с GitHub:
 ```
-git@github.com:alexpro2022/QRkot_spreadsheets-FastAPI.git
+git clone git@github.com:alexpro2022/QRkot_spreadsheets-FastAPI.git
 ```
 
 2. Перейдите в созданную директорию проекта:
