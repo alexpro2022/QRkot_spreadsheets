@@ -38,6 +38,9 @@
 
 **Базы данных и инструменты работы с БД:**
 
+[![SQLite3](https://img.shields.io/badge/-SQLite3-464646?logo=SQLite)](https://www.sqlite.com/version3.html)
+[![aiosqlite](https://img.shields.io/badge/-aiosqlite:%20Sqlite%20for%20AsyncIO-464646?logo=SQLite)](https://pypi.org/project/aiosqlite/)
+
 [![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-464646?logo=PostgreSQL)](https://www.postgresql.org/)
 [![asyncpg](https://img.shields.io/badge/-asyncpg-464646?logo=PostgreSQL)](https://pypi.org/project/asyncpg/)
 [![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-464646?logo=sqlalchemy)](https://www.sqlalchemy.org/)
@@ -124,7 +127,7 @@ cp env_example .env && \
 nano .env
 ```
 <details>
-<summary>сервер Uvicorn</summary>
+<summary>сервер Uvicorn/SQLite3</summary>
 
 2. Создайте и активируйте виртуальное окружение:
    * Если у вас Linux/macOS
@@ -157,7 +160,7 @@ uvicorn app.main:app
 6. Остановить Uvicorn можно комбинацией клавиш Ctl-C.
 </details>
 <details>
-<summary>Docker Compose</summary>
+<summary>Docker Compose/PostgreSQL</summary>
 
 2. Из корневой директории проекта выполните команду:
 ```
