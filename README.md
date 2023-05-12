@@ -101,6 +101,8 @@
 ## Установка и запуск:
 Удобно использовать принцип copy-paste - копировать команды из GitHub Readme и вставлять в командную строку Git Bash или IDE (например VSCode).
 ### Предварительные условия:
+<details><summary>Развернуть</summary>
+
 Предполагается, что пользователь:
  - создал [сервисный аккаунт](https://support.google.com/a/answer/7378726?hl=en) на платформе Google Cloud и получил JSON-файл с информацией о своем сервисном аккаунте, его приватный ключ, ID и ссылки для авторизации. Эти данные будет необходимо указать в файле переменных окружения.
  - создал аккаунт [DockerHub](https://hub.docker.com/), если запуск будет производиться на удаленном сервере.
@@ -108,9 +110,10 @@
     ```
     docker --version && docker-compose --version
     ```
+</details>
 <hr>
 <details>
-<summary>Локальный запуск: Uvicorn или Docker Compose</summary> 
+<summary>Локальный запуск</summary> 
 
 1. Клонируйте репозиторий с GitHub и введите данные для переменных окружения (значения даны для примера, но их можно оставить):
 
@@ -121,7 +124,7 @@ cp env_example .env && \
 nano .env
 ```
 <details>
-<summary>Локальный запуск: Uvicorn</summary>
+<summary>сервер Uvicorn</summary>
 
 2. Создайте и активируйте виртуальное окружение:
    * Если у вас Linux/macOS
@@ -154,7 +157,7 @@ uvicorn app.main:app
 6. Остановить Uvicorn можно комбинацией клавиш Ctl-C.
 </details>
 <details>
-<summary>Локальный запуск: Docker Compose</summary>
+<summary>Docker Compose</summary>
 
 2. Из корневой директории проекта выполните команду:
 ```
@@ -172,10 +175,11 @@ docker compose -f infra/local/docker-compose.yml down
 docker compose -f infra/local/docker-compose.yml down -v
 ```
 </details>
-</details>
-<hr>
+ 
+<hr></details>
+
 <details>
-<summary>Запуск на удаленном сервере: Docker Compose</summary>
+<summary>Запуск на удаленном сервере</summary>
 
 1. Сделайте [форк](https://docs.github.com/en/get-started/quickstart/fork-a-repo) в свой репозиторий.
 
