@@ -121,7 +121,7 @@
 1. Клонируйте репозиторий с GitHub и введите данные для переменных окружения (значения даны для примера, но их можно оставить):
 
 ```
-git clone git@github.com:alexpro2022/QRkot_spreadsheets-FastAPI.git && \
+git clone https://github.com/alexpro2022/QRkot_spreadsheets-FastAPI.git && \
 cd QRkot_spreadsheets-FastAPI && \
 cp env_example .env && \
 nano .env
