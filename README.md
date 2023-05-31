@@ -1,6 +1,6 @@
 # Проект: QRkot_spreadsheets
 [![status](https://github.com/alexpro2022/QRkot_spreadsheets/actions/workflows/main.yml/badge.svg)](https://github.com/alexpro2022/QRkot_spreadsheets/actions)
-[![codecov](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets/branch/main/graph/badge.svg?token=Y2OZTRV4CP)](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets)
+[![codecov](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets-FastAPI/branch/main/graph/badge.svg?token=Y2OZTRV4CP)](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets-FastAPI)
 
 Приложение для Благотворительного фонда поддержки котиков QRKot. 
 Фонд собирает пожертвования на различные целевые проекты: на медицинское обслуживание нуждающихся хвостатых, на обустройство кошачьей колонии в подвале, на корм оставшимся без попечения кошкам — на любые цели, связанные с поддержкой кошачьей популяции.
