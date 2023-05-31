@@ -1,5 +1,5 @@
 # Проект: QRkot_spreadsheets
-[![status](https://github.com/alexpro2022/QRkot_spreadsheets/actions/workflows/main.yml/badge.svg)](https://github.com/alexpro2022/QRkot_spreadsheets/actions)
+[![QRkot-Google CI/CD](https://github.com/alexpro2022/QRkot_spreadsheets-FastAPI/actions/workflows/main.yml/badge.svg)](https://github.com/alexpro2022/QRkot_spreadsheets-FastAPI/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets-FastAPI/branch/main/graph/badge.svg?token=Y2OZTRV4CP)](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets-FastAPI)
 
 Приложение для Благотворительного фонда поддержки котиков QRKot. 
