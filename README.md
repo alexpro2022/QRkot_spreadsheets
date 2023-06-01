@@ -1,6 +1,6 @@
 # Проект: QRkot_spreadsheets
-[![status](https://github.com/alexpro2022/QRkot_spreadsheets/actions/workflows/main.yml/badge.svg)](https://github.com/alexpro2022/QRkot_spreadsheets/actions)
-[![codecov](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets/branch/main/graph/badge.svg?token=Y2OZTRV4CP)](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets)
+[![QRkot-Google CI/CD](https://github.com/alexpro2022/QRkot_spreadsheets-FastAPI/actions/workflows/main.yml/badge.svg)](https://github.com/alexpro2022/QRkot_spreadsheets-FastAPI/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets-FastAPI/branch/main/graph/badge.svg?token=Y2OZTRV4CP)](https://codecov.io/gh/alexpro2022/QRkot_spreadsheets-FastAPI)
 
 Приложение для Благотворительного фонда поддержки котиков QRKot. 
 Фонд собирает пожертвования на различные целевые проекты: на медицинское обслуживание нуждающихся хвостатых, на обустройство кошачьей колонии в подвале, на корм оставшимся без попечения кошкам — на любые цели, связанные с поддержкой кошачьей популяции.
@@ -11,6 +11,7 @@
 - [Описание работы](#описание-работы)
 - [Установка и запуск](#установка-и-запуск)
 - [Применение](#применение)
+- [Удаление](#удаление)
 - [Автор](#автор)
 
 
@@ -110,7 +111,7 @@
  - создал [сервисный аккаунт](https://support.google.com/a/answer/7378726?hl=en) на платформе Google Cloud и получил JSON-файл с информацией о своем сервисном аккаунте, его приватный ключ, ID и ссылки для авторизации. Эти данные будет необходимо указать в файле переменных окружения.
  - создал аккаунт [DockerHub](https://hub.docker.com/), если запуск будет производиться на удаленном сервере.
  - установил [Docker](https://docs.docker.com/engine/install/) и [Docker Compose](https://docs.docker.com/compose/install/) на локальной машине или на удаленном сервере, где проект будет запускаться в контейнерах. Проверить наличие можно выполнив команды:
-    ```
+    ```bash
     docker --version && docker-compose --version
     ```
 </details>
@@ -120,8 +121,8 @@
 
 1. Клонируйте репозиторий с GitHub и введите данные для переменных окружения (значения даны для примера, но их можно оставить):
 
-```
-git clone git@github.com:alexpro2022/QRkot_spreadsheets-FastAPI.git && \
+```bash
+git clone https://github.com/alexpro2022/QRkot_spreadsheets-FastAPI.git && \
 cd QRkot_spreadsheets-FastAPI && \
 cp env_example .env && \
 nano .env
@@ -131,50 +132,51 @@ nano .env
 
 2. Создайте и активируйте виртуальное окружение:
    * Если у вас Linux/macOS
-   ```
+   ```bash
     python -m venv venv && source venv/bin/activate
    ```
    * Если у вас Windows
-   ```
+   ```bash
     python -m venv venv && source venv/Scripts/activate
    ```
 
 3. Установите в виртуальное окружение все необходимые зависимости из файла **requirements.txt**:
-```
+```bash
 python -m pip install --upgrade pip && pip install -r requirements.txt
 ```
 
 4. В проекте уже инициализирована система миграций Alembic с настроенной автогенерацией имен внешних ключей моделей и создан файл первой миграции. Чтобы ее применить, необходимо выполнить команду:
-```
+```bash
 alembic upgrade head
 ```
 Будут созданы все таблицы из файла миграций.
 
 5. Запуск приложения - из корневой директории проекта выполните команду:
-```
+```bash
 uvicorn app.main:app
 ```
 Сервер Uvicorn запустит приложение по адресу http://127.0.0.1:8000.
 Администрирование приложения может быть осуществлено через Swagger доступный по адресу http://127.0.0.1:8000/docs (далее см. [Применение](#применение)).
 
 6. Остановить Uvicorn можно комбинацией клавиш Ctl-C.
-</details>
+<hr></details>
+
 <details>
 <summary>Docker Compose/PostgreSQL</summary>
 
 2. Из корневой директории проекта выполните команду:
-```
+```bash
 docker compose -f infra/local/docker-compose.yml up -d --build
 ```
 Проект будет развернут в трех docker-контейнерах (db, web, nginx) по адресу http://localhost.
 Администрирование приложения может быть осуществлено через Swagger доступный по адресу http://localhost/docs (далее см. [Применение](#применение)).
 
 3. Остановить docker и удалить контейнеры можно командой из корневой директории проекта:
-```
+```bash
 docker compose -f infra/local/docker-compose.yml down
 ```
 Если также необходимо удалить том базы данных:
-```
+```bash
 docker compose -f infra/local/docker-compose.yml down -v
 ```
 </details>
@@ -187,7 +189,7 @@ docker compose -f infra/local/docker-compose.yml down -v
 1. Сделайте [форк](https://docs.github.com/en/get-started/quickstart/fork-a-repo) в свой репозиторий.
 
 2. Создайте Actions.Secrets согласно списку ниже (значения указаны для примера) + переменные окружения из env_example файла:
-```
+```py
 PROJECT_NAME=qrkot_spreadsheets
 SECRET_KEY
 
@@ -214,7 +216,7 @@ TELEGRAM_BOT_TOKEN
 </details>
 <hr>
 
-При первом запуске будет создан суперюзер (пользователь с правами админа) с учетными данными из переменных окружения ADMIN_EMAIL и ADMIN_PASSWORD.
+При первом запуске будет создан суперюзер (пользователь с правами админа) с учетными данными из переменных окружения `ADMIN_EMAIL` и `ADMIN_PASSWORD`.
 
 [⬆️Оглавление](#оглавление)
 
@@ -224,23 +226,41 @@ TELEGRAM_BOT_TOKEN
 Swagger позволяет осуществлять http-запросы к работающему сервису, тем самым можно управлять проектами, пожертвованиями и пользователями в рамках политики сервиса (указано в Swagger для каждого запроса). 
 Для доступа к этим функциям необходимо авторизоваться в Swagger, используя credentials из **.env**-файла:
 
-    1. Нажмите:
-        - на символ замка в строке любого эндпоинта или 
-        - на кнопку Authorize в верхней части Swagger. 
-    Появится окно для ввода логина и пароля.
+ 1. Нажмите:
+    - на символ замка в строке любого эндпоинта или 
+    - на кнопку `Authorize` в верхней части Swagger. 
+     Появится окно для ввода логина и пароля.
 
-    2. Введите credentials в поля формы: 
-        - в поле username — значение переменной окружения ADMIN_EMAIL, 
-        - в поле password — значение переменной окружения ADMIN_PASSWORD. 
-    В выпадающем списке Client credentials location оставьте значение Authorization header, 
-    остальные два поля оставьте пустыми; нажмите кнопку Authorize. 
-Если данные были введены правильно, и таблица в БД существует — появится окно с подтверждением авторизации, нажмите Close.
+ 2. Введите credentials в поля формы: 
+    - в поле `username` — значение переменной окружения `ADMIN_EMAIL`, 
+    - в поле `password` — значение переменной окружения `ADMIN_PASSWORD`. 
+    В выпадающем списке `Client credentials location` оставьте значение `Authorization header`, 
+    остальные два поля оставьте пустыми; нажмите кнопку `Authorize`. 
+Если данные были введены правильно, и таблица в БД существует — появится окно с подтверждением авторизации, нажмите `Close`.
 Чтобы разлогиниться — перезагрузите страницу.
 
 [⬆️Оглавление](#оглавление)
 
 
+
+## Удаление:
+Для удаления проекта выполните команду:
+```bash
+cd .. && rm -fr QRkot_spreadsheets-FastAPI && deactivate
+```
+  
+[⬆️Оглавление](#оглавление)
+
+
+
 ## Автор
 [Aleksei Proskuriakov](https://github.com/alexpro2022)
+
+- дополнительно к ТЗ проекта реализовал: 
+     * просмотр всех отчетов на Google диске,
+     * удаление определенного отчета
+     * полную очистка диска.
+- нашел и исправил ошибки в оригинальных тестах (предоставлялись вместе с ТЗ проекта)
+- написал несколько новых тестов повышающих codecov до 87%.
 
 [⬆️В начало](#Проект-QRkot_spreadsheets)
