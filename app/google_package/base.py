@@ -237,9 +237,13 @@ class GoogleBaseClient:
                     wrapper_services, spreadsheet['id'])
             return 'Документы удалены, диск пуст.'
         return 'На диске нет документов для удаления.'
+    
+    def __init__(self):
+        self.cred = ServiceAccountCreds(**self.INFO)
 
     async def get_google_service(self) -> AsyncGenerator[Aiogoogle, None]:
         async with Aiogoogle(
-            service_account_creds=ServiceAccountCreds(**self.INFO)
+            # service_account_creds=ServiceAccountCreds(**self.INFO)
+            service_account_creds=self.cred
         ) as aiogoogle:
             yield aiogoogle

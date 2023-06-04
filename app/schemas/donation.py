@@ -7,8 +7,8 @@ from app.schemas.mixins import SchemasMixin
 
 
 class DonationBase(BaseModel):
-    full_amount: int = Field(gt=0)
-    comment: Optional[str] = None
+    full_amount: int = Field(gt=0, example=10)
+    comment: Optional[str] = Field(None, example='comment for donation')
 
     class Config:
         extra = Extra.forbid
