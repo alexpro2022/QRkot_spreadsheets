@@ -17,11 +17,12 @@ class CharityUpdate(CharityBase):
     description: Optional[str] = Field(None, example='patch_description for Charity_project_1')
     full_amount: Optional[int] = Field(None, gt=0, example=10)
     # if field is present in request body it cannot be None
-    @validator('name', 'description', 'full_amount') 
+
+    @validator('name', 'description', 'full_amount')
     def field_cannot_be_null(cls, field):
         if field is None:
             raise ValueError('Поле не может быть пустым!')
-        return field  
+        return field
 
 
 class CharityCreate(CharityBase):

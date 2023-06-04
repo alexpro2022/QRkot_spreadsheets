@@ -172,7 +172,7 @@ class GoogleBaseClient:
                 valueInputOption=self.INPUT_OPTION,
                 json=update_body,
             ))
-    
+
     def __check_info_vars(self):
         empty_vars = [key for key, value in self.INFO.items() if value is None or value == '']
         if empty_vars:
@@ -180,7 +180,6 @@ class GoogleBaseClient:
                 HTTPStatus.BAD_REQUEST,
                 f'Запрос отклонен !!! Переменные окружения для Google не установлены:'
                 f'{empty_vars}')
-
 
     async def upload(
         self,
@@ -214,7 +213,7 @@ class GoogleBaseClient:
         wrapper_services: Aiogoogle,
         spreadsheet_id: str,
     ) -> str:
-        self.__check_info_vars()       
+        self.__check_info_vars()
         service = await self._get_api_service(wrapper_services, drive=True)
         try:
             await wrapper_services.as_service_account(
@@ -229,7 +228,7 @@ class GoogleBaseClient:
         self,
         wrapper_services: Aiogoogle
     ) -> str:
-        self.__check_info_vars()       
+        self.__check_info_vars()
         spreadsheets = await self.get_all_spreadsheets(wrapper_services)
         if spreadsheets:
             for spreadsheet in spreadsheets:
@@ -237,7 +236,7 @@ class GoogleBaseClient:
                     wrapper_services, spreadsheet['id'])
             return 'Документы удалены, диск пуст.'
         return 'На диске нет документов для удаления.'
-    
+
     def __init__(self):
         self.cred = ServiceAccountCreds(**self.INFO)
 
